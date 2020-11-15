@@ -11,11 +11,12 @@ services:
       - ./php/php.ini:/usr/local/etc/php/php.ini
     working_dir: /app
     environment:
-      - DB_CONNECTION=mysql
-      - DB_HOST=db
-      - DB_DATABASE=laravel_local
-      - DB_USERNAME=root
-      - DB_PASSWORD=root
+      # テスト時に切り替わらなくなるためコメントアウト
+      # - DB_CONNECTION=mysql
+      # - DB_HOST=db
+      # - DB_DATABASE=laravel_local
+      # - DB_USERNAME=root
+      # - DB_PASSWORD=root
       - TZ=${TZ}
 
   web:
