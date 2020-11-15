@@ -1,4 +1,4 @@
-# Learning TDD in Laravel×Docker
+# Learning Laravel×Docker
 
 ## Build the environment
 
