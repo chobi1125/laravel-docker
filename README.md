@@ -2,15 +2,34 @@
 
 ## Build the environment
 
-Run the following command in docker directory.
+# 新規作成時
 
 ```sh
-$ docker-compose build
+$ docker-compose up -d --build
 ```
 
-## Run
+# Laravelプロジェクト作成①クローン
+```sh
+$ cd ../app
+$ git clone git@github.com:chobi1125/~~ . # これは自身のプロジェクトを。
+$ make app 
+# ここからコンテナ内で実行
+$ composer i
+$ cp .env.example .env
+$ php artisan key:generate
+$ php artisan migrate
+```
 
-Run the following command in docker directory.
+# Laravelプロジェクト作成②新規作成
+```sh
+$ cd ../app
+$ git clone git@github.com:chobi1125/~~ . # これは自身のプロジェクトを。
+$ make app 
+# ここからコンテナ内で実行
+$ composer create-project --prefer-dist "laravel/laravel=6.*" .
+```
+
+## コンテナ起動
 
 ```sh
 $ make up
@@ -18,10 +37,10 @@ $ make up
 
 Open `http://localhost` in a browser.
 
-## Stop
-
-Run the following command in docker directory.
+## コンテナ停止
 
 ```sh
 $ make stop
+# コンテナ削除
+$ make down
 ```

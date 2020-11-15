@@ -9,7 +9,7 @@ down:
 
 # alpineは軽量化のためashらしい
 app:
-	docker-compose exec app bash
+	docker-compose exec app ash
 
 dbdev:
 	docker-compose exec db bash
