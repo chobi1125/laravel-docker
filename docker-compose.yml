@@ -30,24 +30,34 @@ services:
     environment:
       - TZ=${TZ}
 
+  # MySQL5.7を使う場合
   db:
-    image: mysql:5.7
+    build: ./mysql
+    ports:
+      - 4306:3306
     volumes:
       - db-store:/var/lib/mysql
-      - ./db/log:/var/log/mysql
-      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
-      - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - TZ=${TZ}
-    ports:
-      - 3306:3306
+
+  # 以下MySQL8.0を使う際
+  # db:
+  #   image: mysql:8.0
+  #   volumes:
+  #     - db-store:/var/lib/mysql
+  #     - ./db/log:/var/log/mysql
+  #     - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+  #   environment:
+  #     - MYSQL_DATABASE=${DB_DATABASE}
+  #     - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+  #     - TZ=${TZ}
+  #   ports:
+  #     - 3306:3306
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - PMA_USER=${DB_USERNAME}
+      - PMA_USER=root
+      # - PMA_USER=${DB_USERNAME}
       - PMA_PASSWORD=${DB_PASSWORD}
     links:
       - db
